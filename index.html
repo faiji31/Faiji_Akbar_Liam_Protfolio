@@ -130,6 +130,22 @@
             transform: translateY(0);
         }
 
+        /* Tools badges */
+        .tool-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .5rem .75rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.03);
+            color: #e6e6e6;
+            font-weight: 600;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+            transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+        }
+        .tool-badge:hover { transform: translateY(-4px); background: linear-gradient(90deg, rgba(255,134,96,0.06), rgba(154,51,255,0.04)); box-shadow: 0 14px 36px rgba(154,51,255,0.06); }
+        .tool-badge svg { width: 20px; height: 20px; flex-shrink: 0; }
+
     </style>
 </head>
 <body class="min-h-screen">
@@ -154,7 +170,7 @@
                     </svg>
                 </span>
                 <div class="logo-font text-xl md:text-2xl font-bold text-white">
-                    <span class="text-gradient-primary">Faiji Akbar Liam</span>
+                    <span class="text-gradient-primary">MERN Developer</span>
                 </div>
             </a>
             <!-- Navbar -->
@@ -172,12 +188,13 @@
         <div class="flex flex-col-reverse md:flex-row items-center md:justify-between gap-12">
             <!-- Text Content -->
             <div class="md:w-3/5 text-center md:text-left">
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-white mb-4 md:mb-6">
-                    I build web apps and craft
-                    <span class="text-gradient-primary block md:inline">seamless experiences.</span>
+                <h1 class="text-3xl md:text-4xl font-extrabold leading-tight text-white mb-2 md:mb-4">
+                    Hi, my name is
+                    <span class="text-gradient-primary block md:inline">Faiji Akbar Liam</span>
                 </h1>
+                <p class="text-2xl md:text-3xl font-semibold text-white mb-6">MERN Stack Developer</p>
                 <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto md:mx-0">
-                    Hello, I'm **Faiji Akbar Liam**, a passionate **MERN Full Stack Software Engineer**. I specialize in developing robust, modern web applications from API design to pixel-perfect frontends using **MongoDB, Express.js, React, and Node.js**.
+                    Welcome — I build full-stack web applications using MongoDB, Express, React, and Node.js. I focus on clean code, responsive UI, and delightful user experiences.
                 </p>
 
                 <!-- Action Buttons -->
@@ -198,6 +215,44 @@
                     alt="Faiji Akbar Liam Avatar" 
                     class="w-64 h-64 md:w-96 md:h-96 rounded-full object-cover border-4 border-[#ff8660] avatar-glow-anim shadow-2xl"
                 />
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="container mx-auto max-w-7xl px-4 py-12 section-fade-in">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-6 text-center">Tools I use</h2>
+        <p class="text-gray-400 text-center mb-8 max-w-2xl mx-auto">A few of my favorite tools and platforms I rely on every day to build, design, and ship great apps.</p>
+
+        <div class="flex flex-wrap justify-center items-center gap-4">
+            <!-- ChatGPT -->
+            <div class="tool-badge">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.21.72 4.25 1.94 5.89L4 22l4.31-1.08C9.95 21.49 10.97 21.75 12 21.75 17.52 21.75 22 17.27 22 11.75 22 6.23 17.52 2 12 2z" fill="#10A37F"/></svg>
+                ChatGPT
+            </div>
+
+            <!-- Chrome -->
+            <div class="tool-badge">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="20" fill="#4285F4"/></svg>
+                Chrome
+            </div>
+
+            <!-- Gemini AI -->
+            <div class="tool-badge">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#6C63FF"/></svg>
+                Gemini AI
+            </div>
+
+            <!-- VS Code -->
+            <div class="tool-badge">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 3v18l9-4 9 4V3L12 7 3 3z" fill="#007ACC"/></svg>
+                VS Code
+            </div>
+
+            <!-- Flutter -->
+            <div class="tool-badge">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 12l10 10 10-10L12 2z" fill="#02569B"/></svg>
+                Flutter
             </div>
         </div>
     </section>
@@ -338,7 +393,7 @@
             </div>
 
             <div class="mt-12 pt-6 border-t border-gray-800 text-sm text-gray-500">
-                &copy; <span id="year"></span> Faiji Akbar Liam. MERN Developer.
+                &copy; <span id="year"></span> Faiji Akbar Liam. MERN Stack Developer.
             </div>
         </div>
     </footer>
