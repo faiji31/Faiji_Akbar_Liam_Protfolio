@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faiji Akbar Liam | MERN Developer Portfolio</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Stylish Fonts: Poppins (clean modern) & Pacifico (stylish logo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Tailwind Configuration for smooth gradients and font */
+        :root {
+            --primary-gradient-orange-blue: linear-gradient(116deg, #ff8660 71.79%, #9a33ff 95.51%);
+            --secondary-gradient-orange: linear-gradient(180deg, #ff8660 0%, #d5491d 100%);
+            --secondary-gradient-blue: linear-gradient(180deg, #5badff 0%, #1373d1 100%);
+        }
+        body {
+            font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Main modern font */
+            background-color: #161513;
+            color: #c5c5c5;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+        }
+        /* Decorative font for the main title/logo */
+        .logo-font {
+            font-family: 'Pacifico', cursive;
+            letter-spacing: 0.4px;
+        }
+
+        /* Gradient Text Utilities */
+        .text-gradient-primary {
+            background: var(--primary-gradient-orange-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .text-gradient-orange {
+            background: var(--secondary-gradient-orange);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .text-gradient-blue {
+            background: var(--secondary-gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Logo mark gradient */
+        .logo-mark svg stop { stop-opacity: 1; }
+
+        /* Header glass/nav style */
+        .nav-glass {
+            background: linear-gradient(90deg, rgba(17,17,17,0.7), rgba(26,26,26,0.6));
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+
+        /* Primary gradient button (modern) */
+        .btn-primary {
+            position: relative;
+            z-index: 10;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            background: linear-gradient(90deg, #ff8660 0%, #9a33ff 100%);
+            box-shadow: 0 8px 24px rgba(154,51,255,0.16);
+        }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 40px rgba(154,51,255,0.22); }
+        .btn-primary a { color: white; display: inline-block; }
+
+        /* --- Animations --- */
+
+        /* 1. Button Pulse Effect */
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.3);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+        /* keep pulse-ring for subtle decorative effect */
+        .btn-primary:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 999px;
+            background: radial-gradient(circle at center, rgba(255,134,96,0.14), rgba(154,51,255,0.06));
+            opacity: 0;
+            z-index: -1;
+        }
+        .btn-primary:active:before, .btn-primary:hover:before { opacity: 1; animation: pulse-ring 1.4s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
+        /* 2. Card Hover (Existing, enhanced) */
+        .card-hover {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(154, 51, 255, 0.2);
+        }
+        
+        /* 3. Avatar Shadow Pulse */
+        @keyframes avatar-glow {
+            0%, 100% { box-shadow: 0 0 40px rgba(255, 134, 96, 0.4); }
+            50% { box-shadow: 0 0 60px rgba(154, 51, 255, 0.6); }
+        }
+        .avatar-glow-anim {
+            animation: avatar-glow 3s infinite alternate;
+        }
+
+        /* 4. Section Fade-in on load (Simple visibility toggle for demo) */
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .section-fade-in-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Navigation Header -->
+    <header class="nav-glass shadow-xl sticky top-0 z-50">
+        <nav class="container mx-auto max-w-7xl px-4 flex justify-between items-center py-3 md:py-4">
+            <!-- Logo: monogram SVG + wordmark -->
+            <a href="#home" class="flex items-center space-x-3 no-underline">
+                <span class="logo-mark inline-block w-12 h-12 rounded-full overflow-visible flex-shrink-0">
+                    <!-- Gradient monogram: FAL -->
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                                <stop offset="0%" stop-color="#ff8660"/>
+                                <stop offset="60%" stop-color="#9a33ff"/>
+                                <stop offset="100%" stop-color="#1373d1"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="24" cy="24" r="22" fill="url(#g1)" opacity="0.12" />
+                        <text x="24" y="30" text-anchor="middle" font-family="Pacifico, cursive" font-size="16" fill="url(#g1)">FAL</text>
+                    </svg>
+                </span>
+                <div class="logo-font text-xl md:text-2xl font-bold text-white">
+                    <span class="text-gradient-primary">Faiji Akbar Liam</span>
+                </div>
+            </a>
+            <!-- Navbar -->
+            <div class="hidden md:flex space-x-8 text-lg font-medium items-center">
+                <a href="#home" class="text-white hover:text-[#ff8660] transition duration-300">Home</a>
+                <a href="#projects" class="text-white hover:text-[#ff8660] transition duration-300">Projects</a>
+                <a href="#skills" class="text-white hover:text-[#ff8660] transition duration-300">Skills</a>
+                <a href="#contact" class="text-white hover:text-[#ff8660] transition duration-300">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero/About Section -->
+    <section id="home" class="container mx-auto max-w-7xl px-4 pt-16 pb-12 md:pt-24 md:pb-16 section-fade-in">
+        <div class="flex flex-col-reverse md:flex-row items-center md:justify-between gap-12">
+            <!-- Text Content -->
+            <div class="md:w-3/5 text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-white mb-4 md:mb-6">
+                    I build web apps and craft
+                    <span class="text-gradient-primary block md:inline">seamless experiences.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto md:mx-0">
+                    Hello, I'm **Faiji Akbar Liam**, a passionate **MERN Full Stack Software Engineer**. I specialize in developing robust, modern web applications from API design to pixel-perfect frontends using **MongoDB, Express.js, React, and Node.js**.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="https://placehold.co/200x50/1373d1/ffffff?text=Download+CV" target="_blank" class="btn-primary inline-flex items-center justify-center text-white font-semibold py-3 px-6 md:py-4 md:px-8 rounded-full shadow-lg text-lg">
+                        Download CV
+                    </a>
+                    <a href="#contact" class="btn-secondary inline-flex items-center justify-center text-white font-semibold py-3 px-6 md:py-4 md:px-8 rounded-full text-lg bg-gray-800 hover:bg-gray-700 transition duration-300">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+
+            <!-- Avatar with Animation -->
+            <div class="md:w-2/5 flex justify-center">
+                <img 
+                    src="https://placehold.co/350x350/1d1d1d/ff8660?text=Faiji+Akbar+Liam" 
+                    alt="Faiji Akbar Liam Avatar" 
+                    class="w-64 h-64 md:w-96 md:h-96 rounded-full object-cover border-4 border-[#ff8660] avatar-glow-anim shadow-2xl"
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills/Experience With Section -->
+    <section id="skills" class="container mx-auto max-w-7xl px-4 py-16 text-center section-fade-in">
+        <h2 class="text-xl font-extrabold text-gray-300 uppercase tracking-widest mb-10">MERN & BEYOND: MY TECH STACK</h2>
+        <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-5xl mx-auto">
+            
+            <!-- MongoDB -->
+            <div class="p-3 bg-gray-800 rounded-xl transform transition duration-300 hover:scale-110 shadow-xl border border-gray-700">
+                <img src="https://placehold.co/60x60/3d3d3d/4db33d?text=MONGO" alt="MongoDB" class="w-12 h-12 md:w-16 md:h-16" />
+                <p class="text-xs mt-1 text-gray-400">MongoDB</p>
+            </div>
+            <!-- Express.js -->
+            <div class="p-3 bg-gray-800 rounded-xl transform transition duration-300 hover:scale-110 shadow-xl border border-gray-700">
+                <img src="https://placehold.co/60x60/3d3d3d/f7df1e?text=EXP" alt="Express.js" class="w-12 h-12 md:w-16 md:h-16" />
+                <p class="text-xs mt-1 text-gray-400">Express.js</p>
+            </div>
+            <!-- React -->
+            <div class="p-3 bg-gray-800 rounded-xl transform transition duration-300 hover:scale-110 shadow-xl border border-gray-700">
+                <img src="https://placehold.co/60x60/3d3d3d/61dafb?text=REACT" alt="React" class="w-12 h-12 md:w-16 md:h-16" />
+                <p class="text-xs mt-1 text-gray-400">React</p>
+            </div>
+            <!-- Node.js -->
+            <div class="p-3 bg-gray-800 rounded-xl transform transition duration-300 hover:scale-110 shadow-xl border border-gray-700">
+                <img src="https://placehold.co/60x60/3d3d3d/8cc84a?text=NODE" alt="Node.js" class="w-12 h-12 md:w-16 md:h-16" />
+                <p class="text-xs mt-1 text-gray-400">Node.js</p>
+            </div>
+
+            <!-- Other Skills -->
+            <!-- Next Js -->
+            <div class="p-3 bg-gray-800 rounded-xl transform transition duration-300 hover:scale-110 shadow-xl border border-gray-700">
+                <img src="https://placehold.co/60x60/3d3d3d/ffffff?text=NEXT" alt="Next Js" class="w-12 h-12 md:w-16 md:h-16" />
+                <p class="text-xs mt-1 text-gray-400">Next.js</p>
+            </div>
+            <!-- Firebase -->
+            <div class="p-3 bg-gray-800 rounded-xl transform transition duration-300 hover:scale-110 shadow-xl border border-gray-700">
+                <img src="https://placehold.co/60x60/3d3d3d/ffca28?text=FIRE" alt="Firebase" class="w-12 h-12 md:w-16 md:h-16" />
+                <p class="text-xs mt-1 text-gray-400">Firebase</p>
+            </div>
+            <!-- Tailwind CSS -->
+            <div class="p-3 bg-gray-800 rounded-xl transform transition duration-300 hover:scale-110 shadow-xl border border-gray-700">
+                <img src="https://placehold.co/60x60/3d3d3d/38bdf8?text=TAIL" alt="Tailwind CSS" class="w-12 h-12 md:w-16 md:h-16" />
+                <p class="text-xs mt-1 text-gray-400">Tailwind</p>
+            </div>
+            <!-- JS6 -->
+            <div class="p-3 bg-gray-800 rounded-xl transform transition duration-300 hover:scale-110 shadow-xl border border-gray-700">
+                <img src="https://placehold.co/60x60/3d3d3d/f7df1e?text=JS6" alt="JavaScript ES6" class="w-12 h-12 md:w-16 md:h-16" />
+                <p class="text-xs mt-1 text-gray-400">JS (ES6)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container mx-auto max-w-7xl px-4 py-16 section-fade-in">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16 text-gradient-orange">
+            MY PROJECTS
+        </h2>
+        
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Project Item 1 -->
+            <div class="bg-[#2a2a2a] rounded-xl overflow-hidden shadow-2xl card-hover">
+                <img src="https://placehold.co/600x400/3d3d3d/ff8660?text=E-commerce+MERN" alt="E-commerce MERN Project" class="w-full h-48 object-cover"/>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">Full Stack E-commerce</h3>
+                    <p class="text-sm text-gray-400 mb-4">MERN Stack, Stripe Integration, JWT Auth.</p>
+                    <a href="#" class="inline-block text-[#ff8660] font-semibold hover:text-white transition duration-300 text-lg">
+                        View Project &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project Item 2 -->
+            <div class="bg-[#2a2a2a] rounded-xl overflow-hidden shadow-2xl card-hover">
+                <img src="https://placehold.co/600x400/3d3d3d/9a33ff?text=Next.js+Blog" alt="Next.js Blog Project" class="w-full h-48 object-cover"/>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">Next.js CMS Blog</h3>
+                    <p class="text-sm text-gray-400 mb-4">Next.js, Tailwind CSS, Headless CMS.</p>
+                    <a href="#" class="inline-block text-[#ff8660] font-semibold hover:text-white transition duration-300 text-lg">
+                        View Project &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project Item 3 -->
+            <div class="bg-[#2a2a2a] rounded-xl overflow-hidden shadow-2xl card-hover">
+                <img src="https://placehold.co/600x400/3d3d3d/5badff?text=Firebase+Chat" alt="Firebase Chat App" class="w-full h-48 object-cover"/>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">Realtime Chat Application</h3>
+                    <p class="text-sm text-gray-400 mb-4">React, Firebase Firestore & Auth.</p>
+                    <a href="#" class="inline-block text-[#ff8660] font-semibold hover:text-white transition duration-300 text-lg">
+                        View Project &rarr;
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Footer/Contact Section -->
+    <footer id="contact" class="bg-[#191919] mt-20 section-fade-in">
+        <div class="container mx-auto max-w-7xl px-4 py-16 text-center">
+            <h2 class="text-4xl font-extrabold text-white mb-6">Let's Connect!</h2>
+            <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-10">
+                I'm currently available for freelance projects and new opportunities. Whether you need a full MERN application or just a quick chat, feel free to reach out.
+            </p>
+
+            <!-- Contact Details -->
+            <div class="flex justify-center items-center mb-10">
+                <div class="flex items-center text-lg text-white font-medium p-4 bg-[#2a2a2a] rounded-full shadow-lg">
+                    <!-- Mail Icon (Inline SVG for guaranteed display) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3 text-[#ff8660]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+                    <a href="mailto:faiji.akbar.dev@example.com" class="hover:text-[#ff8660] transition duration-300">faijiakbarliam2016@gmail.com</a>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex justify-center space-x-6">
+                <!-- GitHub -->
+                <a href="https://github.com/faiji31" target="_blank" class="text-gray-400 hover:text-[#ff8660] transition duration-300 transform hover:scale-125">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.082-.742.082-.727.082-.727 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.421-1.304.764-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.292-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.474 5.925.432.373.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.802 24 17.323 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <!-- LinkedIn -->
+                <a href="https://linkedin.com/in/YourLinkedInProfile" target="_blank" class="text-gray-400 hover:text-[#5badff] transition duration-300 transform hover:scale-125">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.328-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.767 7 2.64v6.595z"/></svg>
+                </a>
+                <!-- WhatsApp -->
+                <a href="https://wa.me/01790528911" target="01790528911" class="text-gray-400 hover:text-[#4db33d] transition duration-300 transform hover:scale-125">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.0003 2.0001C6.47533 2.0001 2.00033 6.4751 2.00033 12.0001C2.00033 17.5251 6.47533 22.0001 12.0003 22.0001C17.5253 22.0001 22.0003 17.5251 22.0003 12.0001C22.0003 6.4751 17.5253 2.0001 12.0003 2.0001ZM16.6353 15.6851C16.4853 15.9351 16.3253 16.0351 16.1453 16.0851C15.9653 16.1351 15.7953 16.1451 15.5253 16.0051C15.2553 15.8651 13.9653 15.3651 13.7253 15.2851C13.4853 15.2051 13.3153 15.1651 13.1353 15.4251C12.9553 15.6851 12.4453 16.2751 12.2853 16.4751C12.1253 16.6751 11.9653 16.6951 11.6953 16.5451C11.4253 16.3951 10.5753 16.1151 9.54533 15.2351C8.74533 14.5451 8.21533 13.6851 8.05533 13.4351C7.89533 13.1851 8.04533 13.0451 8.16533 12.9151C8.26533 12.8251 8.40533 12.6351 8.53533 12.4851C8.66533 12.3351 8.71533 12.2451 8.81533 12.0451C8.91533 11.8451 8.86533 11.6651 8.78533 11.5151C8.70533 11.3651 8.19533 10.1551 7.99533 9.6551C7.79533 9.1551 7.60533 9.2251 7.46533 9.2251C7.32533 9.2251 7.15533 9.2051 6.98533 9.2051C6.81533 9.2051 6.54533 9.2551 6.27533 9.5951C6.00533 9.9351 5.37533 10.5151 5.37533 11.8351C5.37533 13.1551 6.20533 14.4151 6.32533 14.5751C6.44533 14.7351 8.00533 17.2951 10.4553 18.2551C12.8953 19.2151 12.9053 19.1651 13.2553 19.1451C13.5653 19.1251 16.4853 17.5951 17.0653 16.5251C17.6453 15.4551 17.6453 15.4751 17.5453 15.3951C17.4453 15.3151 16.8853 15.0651 16.6353 15.6851Z" fill="#25D366"/></svg>
+                </a>
+                <!-- Facebook -->
+                <a href="https://facebook.com/YourFacebookProfile" target="_blank" class="text-gray-400 hover:text-blue-500 transition duration-300 transform hover:scale-125">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M14 2H10C5.589 2 2 5.589 2 10v4c0 4.411 3.589 8 8 8h4c4.411 0 8-3.589 8-8v-4c0-4.411-3.589-8-8-8zm2.936 8.35c0-.022 0-.044-.002-.066a3.868 3.868 0 0 0-.256-1.025 3.896 3.896 0 0 0-.756-.99 3.868 3.868 0 0 0-1.025-.756 3.896 3.896 0 0 0-1.091-.258c-.022 0-.044 0-.066 0-.317-.002-.634 0-.95.002-.022 0-.044 0-.066 0a3.89 3.89 0 0 0-1.091.258 3.868 3.868 0 0 0-1.025.756 3.896 3.896 0 0 0-.756.99 3.868 3.868 0 0 0-.256 1.025c-.002.022-.002.044-.002.066s0 .044 0 .066c0 1.298 1.05 2.348 2.348 2.348h.001c1.297 0 2.348-1.05 2.348-2.348zm-4.706 0c0-.857.69-1.547 1.548-1.547h.001c.857 0 1.547.69 1.547 1.547 0 .857-.69 1.548-1.547 1.548h-.001c-.858 0-1.548-.69-1.548-1.548zm4.706 4.95v-1.95h-5.46v1.95H7.55v-4.998h1.248v.693c.31-.575.76-1.07 1.28-1.48.51-.4.998-.67 1.488-.81.498-.146.99-.22.498-.22.68.01 1.344.15 1.968.41.624.26 1.186.64 1.674 1.13.488.49.868 1.05 1.128 1.675.26.624.408 1.288.418 1.97H14v.002H17.45v1.95h-1.24z"/></svg>
+                </a>
+            </div>
+
+            <div class="mt-12 pt-6 border-t border-gray-800 text-sm text-gray-500">
+                &copy; <span id="year"></span> Faiji Akbar Liam. MERN Developer.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Get the current year for the footer copyright
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Simple Intersection Observer for Section Fade-In Animation
+        const sections = document.querySelectorAll('.section-fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('section-fade-in-visible');
+                    // Stop observing once visible
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, {
+            rootMargin: '0px',
+            threshold: 0.1 
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Ensure Hero section is visible immediately
+        document.getElementById('home').classList.add('section-fade-in-visible');
+
+    </script>
+</body>
+</html>
