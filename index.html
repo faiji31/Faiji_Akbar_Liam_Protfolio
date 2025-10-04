@@ -53,25 +53,6 @@
         /* Logo mark gradient */
         .logo-mark svg stop { stop-opacity: 1; }
 
-        /* Header glass/nav style */
-        .nav-glass {
-            background: linear-gradient(90deg, rgba(17,17,17,0.7), rgba(26,26,26,0.6));
-            -webkit-backdrop-filter: blur(6px);
-            backdrop-filter: blur(6px);
-            border-bottom: 1px solid rgba(255,255,255,0.03);
-        }
-
-        /* Primary gradient button (modern) */
-        .btn-primary {
-            position: relative;
-            z-index: 10;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            background: linear-gradient(90deg, #ff8660 0%, #9a33ff 100%);
-            box-shadow: 0 8px 24px rgba(154,51,255,0.16);
-        }
-        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 40px rgba(154,51,255,0.22); }
-        .btn-primary a { color: white; display: inline-block; }
-
         /* --- Animations --- */
 
         /* 1. Button Pulse Effect */
@@ -85,21 +66,7 @@
                 opacity: 0;
             }
         }
-        /* keep pulse-ring for subtle decorative effect */
-        .btn-primary:before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-            border-radius: 999px;
-            background: radial-gradient(circle at center, rgba(255,134,96,0.14), rgba(154,51,255,0.06));
-            opacity: 0;
-            z-index: -1;
-        }
-        .btn-primary:active:before, .btn-primary:hover:before { opacity: 1; animation: pulse-ring 1.4s cubic-bezier(0, 0, 0.2, 1) infinite; }
+        /* keep pulse-ring for subtle decorative effect (kept for possible future use) */
 
         /* 2. Card Hover (Existing, enhanced) */
         .card-hover {
@@ -130,32 +97,18 @@
             transform: translateY(0);
         }
 
-        /* Tools badges */
-        .tool-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: .6rem;
-            padding: .5rem .75rem;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.03);
-            color: #e6e6e6;
-            font-weight: 600;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-            transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-        }
-        .tool-badge:hover { transform: translateY(-4px); background: linear-gradient(90deg, rgba(255,134,96,0.06), rgba(154,51,255,0.04)); box-shadow: 0 14px 36px rgba(154,51,255,0.06); }
-        .tool-badge svg { width: 20px; height: 20px; flex-shrink: 0; }
+        /* Tool badge styling replaced with Tailwind utility classes in markup for easier customization */
 
     </style>
 </head>
 <body class="min-h-screen">
 
     <!-- Navigation Header -->
-    <header class="nav-glass shadow-xl sticky top-0 z-50">
-        <nav class="container mx-auto max-w-7xl px-4 flex justify-between items-center py-3 md:py-4">
+    <header class="sticky top-0 z-50">
+        <nav class="container mx-auto max-w-7xl px-4 flex justify-between items-center py-3 md:py-4 bg-gradient-to-r from-[rgba(17,17,17,0.7)] to-[rgba(26,26,26,0.6)] backdrop-blur-md border-b border-[rgba(255,255,255,0.03)]">
             <!-- Logo: monogram SVG + wordmark -->
             <a href="#home" class="flex items-center space-x-3 no-underline">
-                <span class="logo-mark inline-block w-12 h-12 rounded-full overflow-visible flex-shrink-0">
+                    <span class="logo-mark inline-block w-12 h-12 rounded-full overflow-visible flex-shrink-0">
                     <!-- Gradient monogram: FAL -->
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <defs>
@@ -174,11 +127,14 @@
                 </div>
             </a>
             <!-- Navbar -->
-            <div class="hidden md:flex space-x-8 text-lg font-medium items-center">
-                <a href="#home" class="text-white hover:text-[#ff8660] transition duration-300">Home</a>
-                <a href="#projects" class="text-white hover:text-[#ff8660] transition duration-300">Projects</a>
-                <a href="#skills" class="text-white hover:text-[#ff8660] transition duration-300">Skills</a>
-                <a href="#contact" class="text-white hover:text-[#ff8660] transition duration-300">Contact</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <div class="space-x-6 text-lg font-medium">
+                    <a href="#home" class="text-white hover:text-[#ff8660] transition duration-300">Home</a>
+                    <a href="#projects" class="text-white hover:text-[#ff8660] transition duration-300">Projects</a>
+                    <a href="#skills" class="text-white hover:text-[#ff8660] transition duration-300">Skills</a>
+                    <a href="#contact" class="text-white hover:text-[#ff8660] transition duration-300">Contact</a>
+                </div>
+                
             </div>
         </nav>
     </header>
@@ -189,7 +145,7 @@
             <!-- Text Content -->
             <div class="md:w-3/5 text-center md:text-left">
                 <h1 class="text-3xl md:text-4xl font-extrabold leading-tight text-white mb-2 md:mb-4">
-                    Hi, my name is
+                    Hi,I'm
                     <span class="text-gradient-primary block md:inline">Faiji Akbar Liam</span>
                 </h1>
                 <p class="text-2xl md:text-3xl font-semibold text-white mb-6">MERN Stack Developer</p>
@@ -199,10 +155,10 @@
 
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <a href="https://placehold.co/200x50/1373d1/ffffff?text=Download+CV" target="_blank" class="btn-primary inline-flex items-center justify-center text-white font-semibold py-3 px-6 md:py-4 md:px-8 rounded-full shadow-lg text-lg">
+                    <a href="https://placehold.co/200x50/1373d1/ffffff?text=Download+CV" target="_blank" class="inline-flex items-center justify-center text-white font-semibold py-3 px-6 md:py-4 md:px-8 rounded-full text-lg bg-gradient-to-r from-[#ff8660] via-[#9a33ff] to-[#1373d1] shadow-lg hover:translate-y-[-3px] transition-transform duration-200">
                         Download CV
                     </a>
-                    <a href="#contact" class="btn-secondary inline-flex items-center justify-center text-white font-semibold py-3 px-6 md:py-4 md:px-8 rounded-full text-lg bg-gray-800 hover:bg-gray-700 transition duration-300">
+                    <a href="#contact" class="inline-flex items-center justify-center text-white font-semibold py-3 px-6 md:py-4 md:px-8 rounded-full text-lg bg-gray-800 hover:bg-gray-700 transition duration-300">
                         Get In Touch
                     </a>
                 </div>
@@ -226,32 +182,32 @@
 
         <div class="flex flex-wrap justify-center items-center gap-4">
             <!-- ChatGPT -->
-            <div class="tool-badge">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.21.72 4.25 1.94 5.89L4 22l4.31-1.08C9.95 21.49 10.97 21.75 12 21.75 17.52 21.75 22 17.27 22 11.75 22 6.23 17.52 2 12 2z" fill="#10A37F"/></svg>
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[rgba(255,255,255,0.03)] text-gray-100 font-semibold shadow-md hover:translate-y-[-4px] transition-transform duration-150">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.21.72 4.25 1.94 5.89L4 22l4.31-1.08C9.95 21.49 10.97 21.75 12 21.75 17.52 21.75 22 17.27 22 11.75 22 6.23 17.52 2 12 2z" fill="#10A37F"/></svg>
                 ChatGPT
             </div>
 
             <!-- Chrome -->
-            <div class="tool-badge">
-                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="20" fill="#4285F4"/></svg>
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[rgba(255,255,255,0.03)] text-gray-100 font-semibold shadow-md hover:translate-y-[-4px] transition-transform duration-150">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"><circle cx="24" cy="24" r="20" fill="#4285F4"/></svg>
                 Chrome
             </div>
 
             <!-- Gemini AI -->
-            <div class="tool-badge">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#6C63FF"/></svg>
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[rgba(255,255,255,0.03)] text-gray-100 font-semibold shadow-md hover:translate-y-[-4px] transition-transform duration-150">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"><circle cx="12" cy="12" r="10" fill="#6C63FF"/></svg>
                 Gemini AI
             </div>
 
             <!-- VS Code -->
-            <div class="tool-badge">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 3v18l9-4 9 4V3L12 7 3 3z" fill="#007ACC"/></svg>
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[rgba(255,255,255,0.03)] text-gray-100 font-semibold shadow-md hover:translate-y-[-4px] transition-transform duration-150">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"><path d="M3 3v18l9-4 9 4V3L12 7 3 3z" fill="#007ACC"/></svg>
                 VS Code
             </div>
 
             <!-- Flutter -->
-            <div class="tool-badge">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 12l10 10 10-10L12 2z" fill="#02569B"/></svg>
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[rgba(255,255,255,0.03)] text-gray-100 font-semibold shadow-md hover:translate-y-[-4px] transition-transform duration-150">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"><path d="M12 2L2 12l10 10 10-10L12 2z" fill="#02569B"/></svg>
                 Flutter
             </div>
         </div>
@@ -304,6 +260,11 @@
                 <img src="https://placehold.co/60x60/3d3d3d/f7df1e?text=JS6" alt="JavaScript ES6" class="w-12 h-12 md:w-16 md:h-16" />
                 <p class="text-xs mt-1 text-gray-400">JS (ES6)</p>
             </div>
+            <div class="p-3 bg-gray-800 rounded-xl transform transition duration-300 hover:scale-110 shadow-xl border border-gray-700">
+                <img src="https://placehold.co/60x60/3d3d3d/f7df1e?text=JS6" alt="Daisy UI" class="w-12 h-12 md:w-16 md:h-16" />
+                <p class="text-xs mt-1 text-gray-400">Daisy Ui</p>
+            </div>
+
         </div>
     </section>
 
@@ -383,7 +344,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.328-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.767 7 2.64v6.595z"/></svg>
                 </a>
                 <!-- WhatsApp -->
-                <a href="https://wa.me/01790528911" target="01790528911" class="text-gray-400 hover:text-[#4db33d] transition duration-300 transform hover:scale-125">
+                <a href="https://wa.me/01790528911" target="_blank" class="text-gray-400 hover:text-[#4db33d] transition duration-300 transform hover:scale-125">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.0003 2.0001C6.47533 2.0001 2.00033 6.4751 2.00033 12.0001C2.00033 17.5251 6.47533 22.0001 12.0003 22.0001C17.5253 22.0001 22.0003 17.5251 22.0003 12.0001C22.0003 6.4751 17.5253 2.0001 12.0003 2.0001ZM16.6353 15.6851C16.4853 15.9351 16.3253 16.0351 16.1453 16.0851C15.9653 16.1351 15.7953 16.1451 15.5253 16.0051C15.2553 15.8651 13.9653 15.3651 13.7253 15.2851C13.4853 15.2051 13.3153 15.1651 13.1353 15.4251C12.9553 15.6851 12.4453 16.2751 12.2853 16.4751C12.1253 16.6751 11.9653 16.6951 11.6953 16.5451C11.4253 16.3951 10.5753 16.1151 9.54533 15.2351C8.74533 14.5451 8.21533 13.6851 8.05533 13.4351C7.89533 13.1851 8.04533 13.0451 8.16533 12.9151C8.26533 12.8251 8.40533 12.6351 8.53533 12.4851C8.66533 12.3351 8.71533 12.2451 8.81533 12.0451C8.91533 11.8451 8.86533 11.6651 8.78533 11.5151C8.70533 11.3651 8.19533 10.1551 7.99533 9.6551C7.79533 9.1551 7.60533 9.2251 7.46533 9.2251C7.32533 9.2251 7.15533 9.2051 6.98533 9.2051C6.81533 9.2051 6.54533 9.2551 6.27533 9.5951C6.00533 9.9351 5.37533 10.5151 5.37533 11.8351C5.37533 13.1551 6.20533 14.4151 6.32533 14.5751C6.44533 14.7351 8.00533 17.2951 10.4553 18.2551C12.8953 19.2151 12.9053 19.1651 13.2553 19.1451C13.5653 19.1251 16.4853 17.5951 17.0653 16.5251C17.6453 15.4551 17.6453 15.4751 17.5453 15.3951C17.4453 15.3151 16.8853 15.0651 16.6353 15.6851Z" fill="#25D366"/></svg>
                 </a>
                 <!-- Facebook -->
